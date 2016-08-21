@@ -1,17 +1,11 @@
 package com.wallet.activity;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
-import com.j256.ormlite.android.apptools.OpenHelperManager;
-import com.j256.ormlite.dao.Dao;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
 import com.wallet.R;
-import com.wallet.db.helper.DatabaseHelper;
-import com.wallet.db.model.ClickCount;
 
 import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
      * @throws SQLException
      */
     private void testOutOrmLiteDatabase() throws SQLException {
-        DatabaseHelper todoOpenDatabaseHelper = OpenHelperManager.getHelper(this,
+       /* DatabaseHelper todoOpenDatabaseHelper = OpenHelperManager.getHelper(this,
                 DatabaseHelper.class);
 
         Dao<ClickCount, Integer> todoDao = todoOpenDatabaseHelper.getClickDao();
@@ -38,12 +32,12 @@ public class MainActivity extends AppCompatActivity {
         calendar.setTime(currDateTime);
         calendar.add(Calendar.DATE, 14);
 
-        Date dueDate = calendar.getTime();
+        Date dueDate = calendar.getTime();*/
 
 //        todoDao.create(new ClickCount("Todo Example 1", "Todo Example 1 Description", currDateTime, dueDate));
   //      todoDao.create(new ClickCount("Todo Example 2", "Todo Example 2 Description", currDateTime, dueDate));
     //    todoDao.create(new ClickCount("Todo Example 3", "Todo Example 3 Description", currDateTime, dueDate));
 
-        List<ClickCount> todos = todoDao.queryForAll();
+//        List<ClickCount> todos = todoDao.queryForAll();
     }
 }

@@ -1,18 +1,18 @@
 package com.wallet.db.helper;
 
-import java.sql.SQLException;
-
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
-import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import com.wallet.R;
-import com.wallet.db.model.ClickCount;
-import com.wallet.db.model.ClickGroup;
+import com.wallet.db.enums.EnumDaoAndModelMapping;
+import com.wallet.db.model.Model;
+
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Database helper which creates and upgrades the database and provides the DAOs for the app.
@@ -28,9 +28,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "click.db";
     private static final int DATABASE_VERSION = 6;
 
-    private Dao<ClickGroup, Integer> groupDao;
-    private Dao<ClickCount, Integer> clickDao;
-
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION, R.raw.ormlite_config);
     }
@@ -42,8 +39,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqliteDatabase, ConnectionSource connectionSource) {
         try {
-            TableUtils.createTable(connectionSource, ClickGroup.class);
-            TableUtils.createTable(connectionSource, ClickCount.class);
+            List<Class> modelList = EnumDaoAndModelMapping.getAllModelClass();
+            for (Class model :modelList) {
+                TableUtils.createTable(connectionSource, model);
+            }
         } catch (SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Unable to create datbases", e);
         }
@@ -52,8 +51,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqliteDatabase, ConnectionSource connectionSource, int oldVer, int newVer) {
         try {
-            TableUtils.dropTable(connectionSource, ClickGroup.class, true);
-            TableUtils.dropTable(connectionSource, ClickCount.class, true);
+            List<Class> modelList = EnumDaoAndModelMapping.getAllModelClass();
+            for (Class model :modelList) {
+                TableUtils.dropTable(connectionSource, model, true);
+            }
             onCreate(sqliteDatabase, connectionSource);
         } catch (SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Unable to upgrade database from version " + oldVer + " to new "
@@ -61,17 +62,11 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         }
     }
 
-    public Dao<ClickGroup, Integer> getGroupDao() throws SQLException {
-        if (groupDao == null) {
-            groupDao = getDao(ClickGroup.class);
+    public  Object getDaoObject(Class<? extends Model> modelClass) throws SQLException{
+        Class daoClass = EnumDaoAndModelMapping.getDaoClass(modelClass);
+        if (daoClass!=null){
+            return getDao(daoClass);
         }
-        return groupDao;
-    }
-
-    public Dao<ClickCount, Integer> getClickDao() throws SQLException {
-        if (clickDao == null) {
-            clickDao = getDao(ClickCount.class);
-        }
-        return clickDao;
+        return null;
     }
 }

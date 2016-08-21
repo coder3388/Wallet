@@ -1,12 +1,14 @@
 package com.wallet.db.util;
 
+import com.j256.ormlite.android.apptools.OrmLiteConfigUtil;
+import com.wallet.db.model.Cash;
+import com.wallet.db.model.Category;
+import com.wallet.db.model.Creditor;
+import com.wallet.db.model.CurrencyUnit;
+
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-
-import com.j256.ormlite.android.apptools.OrmLiteConfigUtil;
-import com.wallet.db.model.ClickCount;
-import com.wallet.db.model.ClickGroup;
 
 /**
  * DatabaseConfigUtl writes a configuration file to avoid using annotation processing in runtime which is very slow
@@ -18,7 +20,7 @@ public class DatabaseConfigUtil extends OrmLiteConfigUtil {
     /**
      * classes represents the models to use for generating the ormlite_config.txt file
      */
-    private static final Class<?>[] classes = new Class[] {ClickCount.class, ClickGroup.class};
+    private static final Class<?>[] classes = new Class[] {Cash.class, Category.class,Creditor.class,CurrencyUnit.class};
 
     /**
      * Given that this is a separate program from the android app, we have to use
