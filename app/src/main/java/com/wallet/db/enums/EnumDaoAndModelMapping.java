@@ -38,10 +38,10 @@ public enum EnumDaoAndModelMapping {
         return modelClass;
     }
 
-    public static Class getDaoClass(Class<? extends Model> modelClass) {
+    public static Object getDaoClass(Class<? extends Model> modelClass) throws InstantiationException, IllegalAccessException{
         for(EnumDaoAndModelMapping e: EnumDaoAndModelMapping.values()) {
             if(e.getModelClass().getClass().equals(modelClass)) {
-                return e.getDaoClass();
+                return e.getDaoClass().newInstance();
             }
         }
         return null;
