@@ -1,6 +1,6 @@
 package com.wallet.daoController;
 
-import com.wallet.db.model.Creditor;
+import com.wallet.db.model.Person;
 
 import java.util.List;
 
@@ -14,14 +14,14 @@ public interface CreditorController {
      * @param creditor category model
      * @return if creating record is success, true, otherwise false
      */
-    Boolean createCreditor(Creditor creditor);
+    Boolean createCreditor(Person creditor);
 
     /**
      * Update category record in its table
      * @param creditor category model
      * @return if updating record is success, true, otherwise false
      */
-    Boolean updateCreditor(Creditor creditor);
+    Boolean updateCreditor(Person creditor);
 
     /**
      * Delete creditor from its table
@@ -35,11 +35,11 @@ public interface CreditorController {
      * @param creditorFilter
      * @return
      */
-    List<Creditor> getAllActiveCreditor(Creditor creditorFilter);
+    List<Person> getAllActiveCreditor(Person creditorFilter);
 
     /**
      * Get creditors that are borrowed or norrowed persons
      * @return
      */
-    List<Creditor> getIncomingCreditorsForPays();
+    List<Person> getIncomingCreditorsForPays();
 }

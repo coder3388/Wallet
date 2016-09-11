@@ -8,8 +8,8 @@ import java.io.Serializable;
 /**
  * Created by Cengiz on 21.8.2016.
  */
-@DatabaseTable(tableName = "CREDITOR")
-public class Creditor extends Model implements Serializable {
+@DatabaseTable(tableName = "PERSON")
+public class Person extends Model implements Serializable {
     @DatabaseField(canBeNull = false,generatedId = true,columnName = "ID")
     private Integer id;
 

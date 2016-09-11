@@ -6,9 +6,9 @@ import com.wallet.db.dao.CreditorDao;
 import com.wallet.db.dao.CurrencyUnitDao;
 import com.wallet.db.model.Cash;
 import com.wallet.db.model.Category;
-import com.wallet.db.model.Creditor;
 import com.wallet.db.model.CurrencyUnit;
 import com.wallet.db.model.Model;
+import com.wallet.db.model.Person;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.List;
  */
 public enum EnumDaoAndModelMapping {
     CURRENCY_UNIT(CurrencyUnit.class, CurrencyUnitDao.class),
-    CREDITOR(Creditor.class, CreditorDao.class),
+    CREDITOR(Person.class, CreditorDao.class),
     CATEGORY(Category.class, CategoryDao.class),
     CASH(Cash.class, CashDao.class);
 

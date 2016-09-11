@@ -8,7 +8,7 @@ import com.wallet.daoController.CashController;
 import com.wallet.daoController.CreditorController;
 import com.wallet.db.dao.CreditorDao;
 import com.wallet.db.enums.EnumDaoAndModelMapping;
-import com.wallet.db.model.Creditor;
+import com.wallet.db.model.Person;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class CreditorControllerImpl implements CreditorController {
 
     public CreditorControllerImpl(Context context) {
         try {
-            this.daoClass = (CreditorDao) EnumDaoAndModelMapping.getDaoClass(Creditor.class);
+            this.daoClass = (CreditorDao) EnumDaoAndModelMapping.getDaoClass(Person.class);
             this.context = context;
         } catch (Exception e) {
             Toast.makeText(context, "CategoryControllerImpl oluşturulurken bir hata meydana geldi.", Toast.LENGTH_SHORT);
@@ -33,24 +33,24 @@ public class CreditorControllerImpl implements CreditorController {
     }
 
     @Override
-    public Boolean createCreditor(Creditor creditor) {
+    public Boolean createCreditor(Person creditor) {
         try {
             int result = daoClass.create(creditor);
             return result>0 ? true:false;
         } catch (Exception e) {
-            Toast.makeText(context, "Creditor kaydı oluşturulamadı!", Toast.LENGTH_SHORT);
+            Toast.makeText(context, "Person kaydı oluşturulamadı!", Toast.LENGTH_SHORT);
             Log.e(TAG, "Bir hata meydana geldi", e);
         }
         return false;
     }
 
     @Override
-    public Boolean updateCreditor(Creditor creditor) {
+    public Boolean updateCreditor(Person creditor) {
         try {
             int result = daoClass.update(creditor);
             return result>0 ? true:false;
         } catch (Exception e) {
-            Toast.makeText(context, "Creditor kaydı güncellenemedi!", Toast.LENGTH_SHORT);
+            Toast.makeText(context, "Person kaydı güncellenemedi!", Toast.LENGTH_SHORT);
             Log.e(TAG, "Bir hata meydana geldi", e);
         }
         return false;
@@ -62,31 +62,31 @@ public class CreditorControllerImpl implements CreditorController {
             int result = daoClass.deleteById(id);
             return result>0 ? true:false;
         } catch (Exception e) {
-            Toast.makeText(context, "Creditor kaydı silinemdi!", Toast.LENGTH_SHORT);
+            Toast.makeText(context, "Person kaydı silinemdi!", Toast.LENGTH_SHORT);
             Log.e(TAG, "Bir hata meydana geldi", e);
         }
         return false;
     }
 
     @Override
-    public List<Creditor> getAllActiveCreditor(Creditor creditorFilter) {
+    public List<Person> getAllActiveCreditor(Person creditorFilter) {
         if (cashController==null){
             cashController = new CashControllerImpl(context);
         }
 
 
         /*try {
-            List<Creditor> creditors = daoClass.queryForMatching(creditorFilter);
+            List<Person> creditors = daoClass.queryForMatching(creditorFilter);
             return creditors;
         }catch (Exception e){
-            Toast.makeText(context, "Aktif Creditor kayıtları getirilemedi!", Toast.LENGTH_SHORT);
+            Toast.makeText(context, "Aktif Person kayıtları getirilemedi!", Toast.LENGTH_SHORT);
             Log.e(TAG, "Bir hata meydana geldi", e);
         }*/
         return null;
     }
 
     @Override
-    public List<Creditor> getIncomingCreditorsForPays() {
+    public List<Person> getIncomingCreditorsForPays() {
         return null;
     }
 

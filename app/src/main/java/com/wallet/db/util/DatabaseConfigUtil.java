@@ -3,8 +3,8 @@ package com.wallet.db.util;
 import com.j256.ormlite.android.apptools.OrmLiteConfigUtil;
 import com.wallet.db.model.Cash;
 import com.wallet.db.model.Category;
-import com.wallet.db.model.Creditor;
 import com.wallet.db.model.CurrencyUnit;
+import com.wallet.db.model.Person;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class DatabaseConfigUtil extends OrmLiteConfigUtil {
     /**
      * classes represents the models to use for generating the ormlite_config.txt file
      */
-    private static final Class<?>[] classes = new Class[] {Cash.class, Category.class,Creditor.class,CurrencyUnit.class};
+    private static final Class<?>[] classes = new Class[] {Cash.class, Category.class,Person.class,CurrencyUnit.class};
 
     /**
      * Given that this is a separate program from the android app, we have to use

@@ -32,9 +32,6 @@ public class Cash extends Model implements Serializable {
     @DatabaseField(canBeNull = true,columnName = "REPETITIVE_COUNT")
     private Integer repetitiveCount;//tutarın tekrar etme sayısı. Eğer tutar sürekli tekrar edecekse -1 verilir bu alanın değeri
 
-    @DatabaseField(canBeNull = true, foreign = true,columnName = "PAYEE_OR_DEPTOR_ID")
-    private Creditor payeeOrDeptor;//payee=alacaklı ve deptor = borçlu
-
     @DatabaseField(canBeNull = false,columnName = "INSERT_DATE")
     private Date insertDate;
 
@@ -68,14 +65,6 @@ public class Cash extends Model implements Serializable {
 
     public void setInsertDate(Date insertDate) {
         this.insertDate = insertDate;
-    }
-
-    public Creditor getPayeeOrDeptor() {
-        return payeeOrDeptor;
-    }
-
-    public void setPayeeOrDeptor(Creditor payeeOrDeptor) {
-        this.payeeOrDeptor = payeeOrDeptor;
     }
 
     public Boolean getRepetitive() {
